@@ -1,0 +1,32 @@
+    Name: Ashlyn Grizzle
+    Stack: Python
+    GitHub Repo link: https://github.com/grizzleashlyn/P-A-Solo-Project
+    Project name: Photocard Trading Hub
+    Project description: I'm a kpop fan, and every album comes with something called photocards.
+        They are essentially printed photos of the member(s) of the group and are about the size of a standard trading card.
+        Collecting these photocards is HUGE in the community, with different album versions having cards specific to them, different retailers
+        having exclusive bonus photocards, and some retailers having preorder benefits of exclusive cards. Trying to collect all of
+        the cards is like any other card trading economy like Pokemon or Yu Gi Oh, cards are bought, sold, and traded and have different
+        values depending on rarity, condition, etc. Some trading occurs online through Discord servers or Instagram, some people sell cards
+        on sites like Etsy. However, I have yet to find a website that solely facilitates photocard trading. So that is my goal. I plan
+        to have a basic site made for this project, but want this to be something that I continue building over time with different
+        functionalities that are currently far, far outside my comfort zone.
+    MVP (Minimum Viable Product) features: In addition to the required features for a solo Python project, I want to have the following:
+        1) A dashboard where you see the currently available cards for trading, a list of the cards you have available to trade, and
+        a link to a new page to add a new card for trade.
+        2) Each card on the available list should be linked to a page that shows the details of the card such as when it was added,
+        who has it, etc.
+        3) The page to add a new card should have spaces to enter all the details of the card like which group, which album, which member(s),
+        and how to contact them for trading.
+    Bonus feature(s): I plan to use Bootstrap as a CSS framework for my main bonus feature. However, if time allows, I would like to
+        add a photo upload feature to the add a card page so users can add a photo of the card itself. I would also like to try to
+        implement a many-to-many relationship where users can say "I want this one!" or something and it adds their name to a list
+        of interested users on the card's specific page. This is something I will experiment with at the very end once everything
+        else is working and only if time allows.
+    Future Goals: This is just for me so that I can look back later as I continue with this project and use it as a checklist of sorts.
+        1) Figure out a direct messaging system so that users can communicate directly within the site to set up trades.
+        2) Figure out how to add a feature that allows users to rate other users after a trade is complete to help deter scammers.
+        3) Figure out how to make each card it's own thing so when users add that they have a card, it adds it to a "in stock" list
+        like how used book sites like ThriftBooks have a main page for a book and you can choose which version you want from a list.
+        4) Give users their own page that can be set to public or private where they can keep track of which cards they have in
+        their collection in general plus a wish list of cards they are looking for.
