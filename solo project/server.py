@@ -1,5 +1,5 @@
 from flask_app import app
-from flask_app.controllers import trips
+from flask_app.controllers import photocards
 
 
 if __name__ == '__main__':
