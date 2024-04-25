@@ -54,3 +54,15 @@ def login():
 def logout():
     session.clear()
     return redirect('/')
+
+#route for displaying dashboard
+
+#route for displaying view page
+
+#route for displaing edit page
+
+#route for processing edits
+
+#route for displaying create page
+
+#route for processing creates
