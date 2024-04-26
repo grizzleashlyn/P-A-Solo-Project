@@ -18,7 +18,7 @@ USE `pc_trading_schema` ;
 -- Table `pc_trading_schema`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pc_trading_schema`.`users` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `email` MEDIUMTEXT NULL,
@@ -31,13 +31,13 @@ ENGINE = InnoDB;
 -- Table `pc_trading_schema`.`photocards`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pc_trading_schema`.`photocards` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `member` VARCHAR(45) NULL,
   `group` VARCHAR(45) NULL,
   `album_version` MEDIUMTEXT NULL,
   `details` LONGTEXT NULL,
   `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `user_id`),
+  PRIMARY KEY (`id`),
   INDEX `fk_photocards_users_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_photocards_users`
     FOREIGN KEY (`user_id`)

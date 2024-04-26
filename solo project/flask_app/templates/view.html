@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
+    <title>Photocard Trading Hub</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
+            <h1 class="align-middle ms-3">Photocard Trading Hub</h1>
+            <h2 class="fs-5 navbar-text ms-3">Made to complete your collection</h2>
+            <div class="d-flex">
+                <h2 class="navbar-text text-light ms-3">Welcome {{user.first_name}}!</h2>
+                <a href="/logout" class="btn btn-warning align-middle me-3">Log Out</a>
+            </div>
+        </nav>
+        <hr>
+        <h1>Details About This {{photocard.member}} Photocard</h1>
+        <div class="container w-50 p-3 border border-dark">
+            <p>Group: {{photocard.artist}}</p>
+            <p>Album/Photocard Version: {{photocard.album_version}}</p>
+            <p>Listed On: {{photocard.created_at}}</p>
+            <p>Last Updated: {{photocard.updated_at}}</p>
+            <p>Listed By: {{photocard.user.first_name}}</p>
+            <p>Details: {{photocard.details}}</p>
+            {% if photocard.user.id == user.id %}
+            <a href="/photocards/edit/{{photocard.id}}" class="btn btn-info">Edit</a>
+            {% endif %}
+        </div>
+        <a href="/dashboard" class="btn btn-light align-middle me-3">Home</a>
+    </div>
+</body>

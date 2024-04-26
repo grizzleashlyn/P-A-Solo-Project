@@ -29,7 +29,7 @@ def create():
     }
     user_id = Users.save(data)
     session["user_id"] = user_id
-    return redirect('/trips')
+    return redirect('/dashboard')
 
 #route for processing login
 @app.post('/login')
@@ -56,13 +56,59 @@ def logout():
     return redirect('/')
 
 #route for displaying dashboard
+@app.route('/dashboard')
+def dashboard():
+    if "user_id" not in session:
+        return redirect('/')
+    user=Users.get_one_by_id(session["user_id"])
+    photocards = Photocards.get_all_photocards_with_users()
+    return render_template('dashboard.html', user=user, all_photocards=photocards)
 
 #route for displaying view page
+@app.route('/photocards/<int:id>')
+def viewphotocard(id):
+    if "user_id" not in session:
+        return redirect('/')
+    user=Users.get_one_by_id(session["user_id"])
+    photocard = Photocards.get_one_photocard_with_user(id)
+    return render_template('view.html', photocard=photocard, user=user)
 
 #route for displaing edit page
+@app.route('/photocards/edit/<int:id>')
+def editphotocard(id):
+    user=Users.get_one_by_id(session["user_id"])
+    if "user_id" not in session:
+        return redirect('/')
+    photocard = Photocards.get_one_photocard_with_user(id)
+    return render_template('edit.html', photocard=photocard, user=user)
 
 #route for processing edits
+@app.post('/update')
+def updatephotocard():
+    if not Photocards.validate_pc(request.form):
+            return redirect(f"/photocards/edit/{id}")
+    Photocards.update_pc(request.form)
+    id = request.form["id"]
+    return redirect(f"/photocards/{id}")
 
 #route for displaying create page
+@app.route('/photocards/new')
+def createpc():
+    user=Users.get_one_by_id(session["user_id"])
+    if "user_id" not in session:
+        return redirect('/')
+    return render_template("create.html", user=user)
 
 #route for processing creates
+@app.post('/process')
+def newpc():
+    if not Photocards.validate_pc(request.form):
+            return redirect('/photocards/new')
+    Photocards.save_new_pc(request.form)
+    return redirect('/dashboard')
+
+#route for processing deletes
+@app.route('/delete/<int:id>')
+def deletepc(id):
+    Photocards.delete_pc(id)
+    return redirect('/dashboard')

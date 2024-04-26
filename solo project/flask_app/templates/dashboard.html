@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
+    <title>Photocard Trading Hub</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
+            <h1 class="align-middle text-light ms-3">Photocard Trading Hub</h1>
+            <h2 class="fs-5 navbar-text text-light ms-3">Made to complete your collection</h2>
+            <div class="d-flex">
+                <h3 class="navbar-text text-light ms-3">Welcome {{user.first_name}}!</h3>
+                <a href="/logout" class="btn btn-warning align-middle me-3">Log Out</a>
+            </div>
+        </nav>
+        <hr>
+        <h1>Photocards Available for Trade:</h1>
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="header text-light">Member</th>
+                    <th scope="col" class="header text-light">Group</th>
+                    <th scope="col" class="header text-light">Album/Card Version</th>
+                    <th scope="col" class="header text-light">Listed By</th>
+                    <th scope="col" class="header text-light">Date Added</th>
+                    <th scope="col" class="header text-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one_photocard in all_photocards %}
+                {% if one_photocard.creator.id != user.id %}
+                <tr>
+                    <td class="rows">{{one_photocard.member}}</td>
+                    <td class="rows">{{one_photocard.artist}}</td>
+                    <td class="rows">{{one_photocard.album_version}}</td>
+                    <td class="rows">{{one_photocard.creator.first_name}}</td>
+                    <td class="rows">{{one_photocard.created_at}}</td>
+                    <td class="rows"><a href="/photocards/{{one_photocard.id}}" class="btn btn-info">Details</a></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Photocards You've Listed for Trade:</h2>
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="header text-light">Member</th>
+                    <th scope="col" class="header text-light">Group</th>
+                    <th scope="col" class="header text-light">Album/Card Version</th>
+                    <th scope="col" class="header text-light">Date Added</th>
+                    <th scope="col" class="header text-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one_photocard in all_photocards %}
+                {% if one_photocard.creator.id == user.id %}
+                <tr>
+                    <td class="rows">{{one_photocard.member}}</td>
+                    <td class="rows">{{one_photocard.artist}}</td>
+                    <td class="rows">{{one_photocard.album_version}}</td>
+                    <td class="rows">{{one_photocard.created_at}}</td>
+                    <td class="rows"><a href="/photocards/edit/{{one_photocard.id}}" class="btn btn-info">Edit</a></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="justify-content-between">
+            <a href="/photocards/new" class="btn btn-light align-middle me-3">+ List a New PC</a>
+        </div>
+    </div>
+</body>

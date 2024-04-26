@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
+    <title>Photocard Trading Hub</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
+            <h1 class="align-middle text-light ms-3">Photocard Trading Hub</h1>
+            <h2 class="fs-5 navbar-text text-light ms-3">Made to complete your collection</h2>
+            <div class="d-flex">
+                <h2 class="navbar-text text-light ms-3">Welcome {{user.first_name}}!</h2>
+                <a href="/logout" class="btn btn-warning align-middle me-3">Log Out</a>
+            </div>
+        </nav>
+        <hr>
+        <h1>List a New Photocard for Trade</h1>
+        <div class="ms-3 mt-3 me-3">
+            <form class="row g-3" action="/process" method="POST">
+                <input type="hidden" name="user_id" value="{{user.id}}">
+                <div class="text-danger">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="member" class="form-label">Member(s): </label>
+                    <input type="text" name="member" class="form-control">
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="artist" class="form-label">Group: </label>
+                    <input type="text" name="artist" class="form-control" />
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="album_version" class="form-label">Album/Photocard Version: </label>
+                    <input type="text" name="album_version" class="form-control" />
+                </div>
+                <div class="mb-3 col-md-12">
+                    <label for="details" class="form-label">Details: </label>
+                    <input type="textarea" name="details" class="form-control" />
+                </div>
+                <div class="mb-3 text-end">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </div>
+            </form>
+            <a href="/dashboard" class="btn btn-light align-middle me-3">Home</a>
+        </div>
+    </div>
+</body>
