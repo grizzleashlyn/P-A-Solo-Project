@@ -10,16 +10,15 @@
 
 <body>
     <div class="container">
-        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
-            <h1 class="align-middle text-light ms-3">Photocard Trading Hub</h1>
-            <h2 class="fs-5 navbar-text text-light ms-3">Made to complete your collection</h2>
-            <div class="d-flex">
-                <h2 class="navbar-text text-light ms-3">Welcome {{user.first_name}}!</h2>
-                <a href="/logout" class="btn btn-warning align-middle me-3">Log Out</a>
+        <nav class="navbar navbar-expand-lg bg-primary">
+            <div class="container-fluid">
+                <h1 class="navbar-brand text-light align-middle ms-3">Photocard Trading Hub</h1>
+                <h2 class="lead align-middle text-light me-3">Made to complete your collection</h2>
+                <a href="/logout" class="btn btn-secondary align-middle ms-3 me-3">Log Out</a>
             </div>
         </nav>
         <hr>
-        <h1>List a New Photocard for Trade</h1>
+        <h2 class="text-primary mt-3 ms-3">List a New Photocard for Trade</h2>
         <div class="ms-3 mt-3 me-3">
             <form class="row g-3" action="/process" method="POST">
                 <input type="hidden" name="user_id" value="{{user.id}}">
@@ -32,27 +31,35 @@
                     {% endif %}
                     {% endwith %}
                 </div>
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" name="member" class="form-control" id="floatingInput"
+                            placeholder="Member(s)"/>
+                    <label for="member" class="ms-1">Member(s): </label>
+                </div>
                 <div class="mb-3 col-md-6">
-                    <label for="member" class="form-label">Member(s): </label>
-                    <input type="text" name="member" class="form-control">
+                    <label for="photo" class="ms-1">Upload a Photo: </label>
+                    <input type="file" name="photo" class="form-control" id="formFile">
                 </div>
-                <div class="mb-3 col-md-4">
-                    <label for="artist" class="form-label">Group: </label>
-                    <input type="text" name="artist" class="form-control" />
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" name="artist" class="form-control" id="floatingInput"
+                            placeholder="Group" />
+                    <label for="artist" class="ms-1">Group: </label>
                 </div>
-                <div class="mb-3 col-md-4">
-                    <label for="album_version" class="form-label">Album/Photocard Version: </label>
-                    <input type="text" name="album_version" class="form-control" />
+                <div class="form-floating mb-3 col-md-6">
+                    <input type="text" name="album_version" class="form-control" id="floatingInput"
+                            placeholder="Album/Photocard Version" />
+                    <label for="album_version" class="ms-1">Album/Photocard Version: </label>
                 </div>
-                <div class="mb-3 col-md-12">
-                    <label for="details" class="form-label">Details: </label>
-                    <input type="textarea" name="details" class="form-control" />
+                <div class="form-floating mb-3 col-md-12">
+                    <input type="textarea" name="details" class="form-control" id="floatingInput"
+                            placeholder="Details" rows="3"/>
+                    <label for="details" class="ms-1">Details: </label>
                 </div>
                 <div class="mb-3 text-end">
                     <button class="btn btn-success" type="submit">Submit</button>
                 </div>
             </form>
-            <a href="/dashboard" class="btn btn-light align-middle me-3">Home</a>
+            <a href="/dashboard" class="btn btn-primary">Home</a>
         </div>
     </div>
 </body>

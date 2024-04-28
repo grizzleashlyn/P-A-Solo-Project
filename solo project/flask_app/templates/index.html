@@ -10,15 +10,17 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <h1 class="align-middle ms-3">Photocard Trading Hub</h1>
-            <h2 class="fs-5 navbar-text ms-3">Made to complete your collection</h2>
+        <nav class="navbar navbar-expand-lg bg-primary">
+            <div class="container-fluid">
+                <h1 class="navbar-brand text-light align-middle ms-3">Photocard Trading Hub</h1>
+                <h2 class="lead align-middle text-light me-3">Made to complete your collection</h2>
+            </div>
         </nav>
         <hr>
-        <div class="d-flex justify-content-center">
-            <div class="contentBlock mx-auto">
-                <h2 class="text-info mt-3 ms-3">Register</h2>
-                <form action="/create_user" method="post" class="ms-3">
+        <div class="d-flex justify-content-evenly">
+            <div class="contentBlock border border-secondary">
+                <h2 class="text-primary mt-3 ms-3 mb-3">Register</h2>
+                <form action="/create_user" method="post" class="mx-3">
                     <div class="text-danger">
                         {% with messages = get_flashed_messages(category_filter=["register"]) %}
                         {% if messages %}
@@ -54,13 +56,13 @@
                         <label for="confirm_password">Confirm Password:</label>
                     </div>
                     <div class="mb-3 text-center">
-                        <input type="submit" value="Sign Up" class="btn btn-info mt-3 mb-3">
+                        <input type="submit" value="Sign Up" class="btn btn-primary mt-1">
                     </div>
                 </form>
             </div>
-            <div class="contentBlock mx-auto">
-                <h2 class="text-info mt-3 ms-3">Login</h2>
-                <form action="/login" method="post" class="ms-3">
+            <div class="contentBlock border border-secondary">
+                <h2 class="text-primary mt-3 ms-3 mb-3">Login</h2>
+                <form action="/login" method="post" class="mx-3">
                     <div class="text-danger">
                         {% with messages = get_flashed_messages(category_filter=["login"]) %}
                         {% if messages %}
@@ -81,7 +83,7 @@
                         <label for="password">Password:</label>
                     </div>
                     <div class="mb-3 text-center">
-                        <input type="submit" value="Login" class="btn btn-info mt-3 mb-3">
+                        <input type="submit" value="Login" class="btn btn-primary mt-1">
                     </div>
                 </form>
             </div>

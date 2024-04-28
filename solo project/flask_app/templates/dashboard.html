@@ -10,69 +10,67 @@
 
 <body>
     <div class="container">
-        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
-            <h1 class="align-middle text-light ms-3">Photocard Trading Hub</h1>
-            <h2 class="fs-5 navbar-text text-light ms-3">Made to complete your collection</h2>
-            <div class="d-flex">
-                <h3 class="navbar-text text-light ms-3">Welcome {{user.first_name}}!</h3>
-                <a href="/logout" class="btn btn-warning align-middle me-3">Log Out</a>
+        <nav class="navbar navbar-expand-lg bg-primary">
+            <div class="container-fluid">
+                <h1 class="navbar-brand text-light align-middle ms-3">Photocard Trading Hub</h1>
+                <h2 class="lead align-middle text-light me-3">Made to complete your collection</h2>
+                <a href="/logout" class="btn btn-secondary align-middle ms-3 me-3">Log Out</a>
             </div>
         </nav>
         <hr>
-        <h1>Photocards Available for Trade:</h1>
-        <table class="table table-bordered text-center">
-            <thead class="table-dark">
+        <h3 class="text-secondary text-center mx-3 my-3">Welcome {{user.first_name}}!</h3>
+        <h2 class="text-primary mt-3">Photocards Available for Trade:</h2>
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-primary">
                 <tr>
-                    <th scope="col" class="header text-light">Member</th>
-                    <th scope="col" class="header text-light">Group</th>
-                    <th scope="col" class="header text-light">Album/Card Version</th>
-                    <th scope="col" class="header text-light">Listed By</th>
-                    <th scope="col" class="header text-light">Date Added</th>
-                    <th scope="col" class="header text-light">Actions</th>
+                    <th scope="col" class="header text-dark">Member</th>
+                    <th scope="col" class="header text-dark">Group</th>
+                    <th scope="col" class="header text-dark">Album/Card Version</th>
+                    <th scope="col" class="header text-dark">Listed By</th>
+                    <th scope="col" class="header text-dark">Date Added</th>
+                    <th scope="col" class="header text-dark">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for one_photocard in all_photocards %}
                 {% if one_photocard.creator.id != user.id %}
-                <tr>
+                <tr class="table-light">
                     <td class="rows">{{one_photocard.member}}</td>
                     <td class="rows">{{one_photocard.artist}}</td>
                     <td class="rows">{{one_photocard.album_version}}</td>
                     <td class="rows">{{one_photocard.creator.first_name}}</td>
                     <td class="rows">{{one_photocard.created_at}}</td>
-                    <td class="rows"><a href="/photocards/{{one_photocard.id}}" class="btn btn-info">Details</a></td>
+                    <td class="rows"><a href="/photocards/{{one_photocard.id}}" class="btn btn-info btn-sm">Details</a></td>
                 </tr>
                 {% endif %}
                 {% endfor %}
             </tbody>
         </table>
-        <h2>Photocards You've Listed for Trade:</h2>
-        <table class="table table-bordered text-center">
-            <thead class="table-dark">
+        <h2 class="text-primary mt-3">Photocards You've Listed for Trade:</h2>
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-primary">
                 <tr>
-                    <th scope="col" class="header text-light">Member</th>
-                    <th scope="col" class="header text-light">Group</th>
-                    <th scope="col" class="header text-light">Album/Card Version</th>
-                    <th scope="col" class="header text-light">Date Added</th>
-                    <th scope="col" class="header text-light">Actions</th>
+                    <th scope="col" class="header text-dark">Member</th>
+                    <th scope="col" class="header text-dark">Group</th>
+                    <th scope="col" class="header text-dark">Album/Card Version</th>
+                    <th scope="col" class="header text-dark">Date Added</th>
+                    <th scope="col" class="header text-dark">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for one_photocard in all_photocards %}
                 {% if one_photocard.creator.id == user.id %}
-                <tr>
+                <tr class="table-light">
                     <td class="rows">{{one_photocard.member}}</td>
                     <td class="rows">{{one_photocard.artist}}</td>
                     <td class="rows">{{one_photocard.album_version}}</td>
                     <td class="rows">{{one_photocard.created_at}}</td>
-                    <td class="rows"><a href="/photocards/edit/{{one_photocard.id}}" class="btn btn-info">Edit</a></td>
+                    <td class="rows"><a href="/photocards/edit/{{one_photocard.id}}" class="btn btn-warning btn-sm">Edit</a></td>
                 </tr>
                 {% endif %}
                 {% endfor %}
             </tbody>
         </table>
-        <div class="justify-content-between">
-            <a href="/photocards/new" class="btn btn-light align-middle me-3">+ List a New PC</a>
-        </div>
+        <a href="/photocards/new" class="btn btn-success align-middle my-3">+ List a New PC</a>
     </div>
 </body>

@@ -1,7 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import user
 from flask import flash
-from datetime import datetime
 
 class Photocards:
     db = "pc_trading_schema"

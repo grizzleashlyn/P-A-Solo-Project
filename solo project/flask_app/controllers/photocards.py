@@ -1,7 +1,9 @@
+import os
 from flask_app import app, bcrypt
 from flask_app.models.user import Users
 from flask_app.models.photocard import Photocards
 from flask import render_template, redirect, request, session, flash
+from werkzeug.utils import secure_filename
 
 #route for displaying index
 @app.route('/')
@@ -85,6 +87,10 @@ def editphotocard(id):
 #route for processing edits
 @app.post('/update')
 def updatephotocard():
+    file = request.files['photo']
+    if file:
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     if not Photocards.validate_pc(request.form):
             return redirect(f"/photocards/edit/{id}")
     Photocards.update_pc(request.form)
@@ -102,6 +108,8 @@ def createpc():
 #route for processing creates
 @app.post('/process')
 def newpc():
+    if "photo" in request.files:
+        photos.save(request.files["photo"])
     if not Photocards.validate_pc(request.form):
             return redirect('/photocards/new')
     Photocards.save_new_pc(request.form)
