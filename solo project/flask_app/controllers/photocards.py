@@ -88,13 +88,13 @@ def editphotocard(id):
 @app.post('/update')
 def updatephotocard():
     file = request.files['photo']
+    id = request.form["id"]
     if file:
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     if not Photocards.validate_pc(request.form):
             return redirect(f"/photocards/edit/{id}")
     Photocards.update_pc(request.form)
-    id = request.form["id"]
     return redirect(f"/photocards/{id}")
 
 #route for displaying create page
